@@ -1,4 +1,4 @@
-import { asyncHandler} from "./utils/asyncHandler.js"
+import { asyncHandler} from "../utils/asyncHandler.js"
 
 
 const registerUser = asyncHandler(async ( req , res)=>{
@@ -8,4 +8,4 @@ const registerUser = asyncHandler(async ( req , res)=>{
 })
 
 
-export { registerUser};
+export {registerUser};
