@@ -2,7 +2,7 @@ import multer from "multer";
 // to ask from yag what is need of multer and somemore details  about multer and another one package that come from  node js / expreess 
 const storage = multer.diskStorage({
     destination: function(req , file , cb){
-        cb(null, '/public ')
+        cb(null, './public/temp')
     },
     filename:function (req, file , cb){
         
