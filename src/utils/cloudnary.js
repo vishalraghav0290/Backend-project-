@@ -3,9 +3,9 @@ import fs from "fs"
 
 // Configure Cloudinary with API credentials from environment variables
 cloudinary.config({ 
-    cloud_name: process.env.CLOUDINARY_CLOUD_NAME || "derkntwlj", // Your cloudinary account name
-    api_key: process.env.CLOUDINARY_API_KEY  || 487642782927223,       // API key for authentication
-    api_secret: process.env.CLOUDINARY_API_SECRET || "V6xiNeYn8NVJHTI5gZFdlFVR7LE" // API secret for authentication
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME, // Your cloudinary account name
+    api_key: process.env.CLOUDINARY_API_KEY  ,       // API key for authentication
+    api_secret: process.env.CLOUDINARY_API_SECRET // API secret for authentication
 }); 
 
 // Function to upload file to Cloudinary
