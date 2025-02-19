@@ -4,6 +4,7 @@ import { User } from "../models/user.model.js"
 import {uploadOnCloudinary } from "../utils/cloudnary.js"
 import { ApiResponse } from "../utils/ApiResponse.js"
 import jwt from "jsonwebtoken"
+import mongoose from "mongoose"
 
 
 const generateAccessTokenandRefreshToken = async(userId)=>{
@@ -328,6 +329,46 @@ const changeCurrentPassword = asyncHandler(async(req , res)=>{
     })
 
     const getWacthHistory= asyncHandler(async(req, res)=>{
-        const user = await User.aggregate()
+        const user = await User.aggregate([
+            {
+                $macth:{
+                    _id: new mongoose.Types.ObjectId(req.user._id)
+                }
+            },{
+                $lookup:{
+                    from: "vedios",
+                    localField: "watchHistory",
+                    foreignField: "_id",
+                    as: "watchHistory",
+                    pipeline:[
+                        {
+                            $lookup:{
+                                from:"users",
+                                localField:"owner",
+                                foreignField:"_id",
+                                as:"owner",
+                                pipeline:[
+                                    {
+                                        $project :{
+                                            fullName: 1,
+                                            username:1,
+                                            avatar: 1,
+                                        }
+                                    },
+                                    {
+                                        $addFields:{
+                                            owner:{
+                                                $first: "$owner"
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        ])
+        return res.status(200).json(new ApiResponse(200 , user[0] , "watchHistory fecth succesfully"))
     })
-export { registerUser , login , logoutUser ,getWacthHistory,  refreshAcessToken , changeCurrentPassword , getCurrentUser , updateAccountDetails , updateUserAvatar , updatecoverImage, getUserChannelProfile}
+export { registerUser , login , logoutUser ,getWacthHistory,  refreshAcessToken , changeCurrentPassword , getCurrentUser , updateAccountDetails , updateUserAvatar , updatecoverImage, getUserChannelProfile }
