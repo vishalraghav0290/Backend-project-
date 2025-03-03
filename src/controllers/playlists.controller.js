@@ -1,4 +1,4 @@
-import {playlist, playlist} from "../models/playlist.model"
+import {playlist} from "../models/playlist.model"
 import { ApiError } from "../utils/ApiError"
 import { ApiResponse } from "../utils/ApiResponse"
 import {User} from "../models/user.model"
@@ -120,3 +120,4 @@ const displayVedio = asyncHandler(async(req , res)=>{
     })
 
 })
+export {newPlaylist , addVedioPlay , removeVedioPlay , displayVedio}

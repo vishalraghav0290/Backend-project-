@@ -92,3 +92,5 @@ const removeLike = asyncHandler(async(req , res)=>{
 
    
 })
+
+export {getAllLiked , addLikes , removeLike}
