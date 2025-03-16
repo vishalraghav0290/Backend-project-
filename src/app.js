@@ -23,6 +23,10 @@ import userRouter from "./routes/User.js"
 // here we simpliy not using app.get  becusse when we use app.get there willl router and contoller meand functionally and route defined in same file while currently we had difined that sepreatly that why we use middle ware 
 app.use('/api/v1/users', userRouter)
 
+import vediorouter from "./routes/comment.routes.js"
+
+app.use('/api/v1/router', vediorouter)
+
 
 
 export default app;

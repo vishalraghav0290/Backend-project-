@@ -4,7 +4,6 @@ import {upload} from "../middlewares/multer.js"
 import { verifyJwt } from "../middlewares/auth.js";
 import {registerUser , login , logoutUser ,getWacthHistory,  refreshAcessToken , changeCurrentPassword , getCurrentUser , updateAccountDetails , updateUserAvatar , updatecoverImage, getUserChannelProfile } from "../controllers/User.js"
 
-
 const router = Router();
 
 // Add at least one route
